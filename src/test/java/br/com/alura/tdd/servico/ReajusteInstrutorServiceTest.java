@@ -24,7 +24,7 @@ public class ReajusteServiceInstrutorTest {
 
 	@Test
 	public void reajusteSalarioParaDesempenhoADesejar() {
-		reajusteService.processarReajuste(funcionario, DesempenhoInstrutor.A_DESEJAR);
+		reajusteService.processarReajuste(funcionario, DesempenhoInstrutor.MEDIANO);
 
 		BigDecimal salarioAtual = funcionario.getSalario();
 		assertEquals(new BigDecimal("1030.00"), salarioAtual);
