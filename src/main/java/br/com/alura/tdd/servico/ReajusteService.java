@@ -7,30 +7,24 @@ import br.com.alura.tdd.modelo.Funcionario;
 
 public class ReajusteService {
 
-	public void processarReajuste(Funcionario funcionario, Desempenho desempenho) {
-		BigDecimal salarioFunc = funcionario.getSalario();
-		BigDecimal reajuste = new BigDecimal("0.00");
+    public void processarReajuste(Funcionario funcionario, Desempenho desempenho) {
+        BigDecimal salarioFunc = funcionario.getSalario();
+        BigDecimal reajuste = new BigDecimal("0.00");
 
-		switch (desempenho) {
-		case A_DESEJAR:
-			reajuste = salarioFunc.multiply(new BigDecimal("0.03"));
-			break;
-
-		case BOM:
-			reajuste = salarioFunc.multiply(new BigDecimal("0.15"));
-			break;
-
-		case OTIMO:
-			reajuste = salarioFunc.multiply(new BigDecimal("0.20"));
-			break;
-
-		default:
-			System.out.println("Tipo de Desempenho inv·lido");
-			break;
-		}
-
-		funcionario.reajustarSalario(reajuste);
-
-	}
-
+        switch (desempenho) {
+            case MEDIANO:
+                reajuste = salarioFunc.multiply(new BigDecimal("0.03"));
+                break;
+            case BOM:
+                reajuste = salarioFunc.multiply(new BigDecimal("0.15"));
+                break;
+            case OTIMO:
+                reajuste = salarioFunc.multiply(new BigDecimal("0.20"));
+                break;
+            default:
+                System.out.println("Tipo de Desempenho inv√°lido");
+                break;
+        }
+        funcionario.reajustarSalario(reajuste);
+    }
 }

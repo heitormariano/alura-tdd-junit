@@ -1,18 +1,14 @@
 package br.com.alura.tdd.servico;
 
-import java.math.BigDecimal;
-
 import br.com.alura.tdd.modelo.DesempenhoInstrutor;
 import br.com.alura.tdd.modelo.Funcionario;
 
-public class ReajusteServiceInstrutor {
+import java.math.BigDecimal;
 
-	public void processarReajuste(Funcionario funcionario, DesempenhoInstrutor desempenho) {
-		BigDecimal salarioFunc = funcionario.getSalario();
-		BigDecimal percentualReajuste = desempenho.obterPercentualReajuste();
-		BigDecimal reajuste = salarioFunc.multiply(percentualReajuste);
+public class ReajusteInstrutorService {
 
-		funcionario.reajustarSalario(reajuste);
-	}
-
+    public void processarReajuste(Funcionario funcionario, DesempenhoInstrutor desempenho) {
+        BigDecimal reajuste = funcionario.getSalario().multiply(desempenho.obterPercentualReajuste());
+        funcionario.reajustarSalario(reajuste);
+    }
 }

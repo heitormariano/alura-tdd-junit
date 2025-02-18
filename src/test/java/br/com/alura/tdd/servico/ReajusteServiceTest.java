@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import br.com.alura.tdd.modelo.Desempenho;
@@ -12,36 +13,37 @@ import br.com.alura.tdd.modelo.Funcionario;
 
 public class ReajusteServiceTest {
 
-	@Test
-	public void reajusteSalarioParaDesempenhoADesejar() {
-		ReajusteService reajusteService = new ReajusteService();
-		Funcionario funcionario = new Funcionario("Mark", LocalDate.now(), new BigDecimal("1000.00"));
+    private ReajusteService reajusteService;
 
-		reajusteService.processarReajuste(funcionario, Desempenho.A_DESEJAR);
+    @BeforeEach
+    void inicializar() {
+        reajusteService = new ReajusteService();
+    }
 
-		BigDecimal salarioAtual = funcionario.getSalario();
-		assertEquals(new BigDecimal("1030.00"), salarioAtual);
-	}
+    @Test
+    public void reajusteSalarioParaDesempenhoModerado() {
+        Funcionario funcionario = new Funcionario("Mark", LocalDate.now(), new BigDecimal("1000.00"));
+        reajusteService.processarReajuste(funcionario, Desempenho.MEDIANO);
 
-	@Test
-	public void reajusteSalarioParaDesempenhoBom() {
-		ReajusteService reajusteService = new ReajusteService();
-		Funcionario funcionario = new Funcionario("John", LocalDate.now(), new BigDecimal("1000.00"));
+        BigDecimal salarioAtual = funcionario.getSalario();
+        assertEquals(new BigDecimal("1030.00"), salarioAtual);
+    }
 
-		reajusteService.processarReajuste(funcionario, Desempenho.BOM);
+    @Test
+    public void reajusteSalarioParaDesempenhoBom() {
+        Funcionario funcionario = new Funcionario("John", LocalDate.now(), new BigDecimal("1000.00"));
+        reajusteService.processarReajuste(funcionario, Desempenho.BOM);
 
-		BigDecimal salarioAtual = funcionario.getSalario();
-		assertEquals(new BigDecimal("1150.00"), salarioAtual);
-	}
+        BigDecimal salarioAtual = funcionario.getSalario();
+        assertEquals(new BigDecimal("1150.00"), salarioAtual);
+    }
 
-	@Test
-	public void reajusteSalarioParaDesempenhoOtimo() {
-		ReajusteService reajusteService = new ReajusteService();
-		Funcionario funcionario = new Funcionario("Karen", LocalDate.now(), new BigDecimal("1000.00"));
+    @Test
+    public void reajusteSalarioParaDesempenhoOtimo() {
+        Funcionario funcionario = new Funcionario("Karen", LocalDate.now(), new BigDecimal("1000.00"));
+        reajusteService.processarReajuste(funcionario, Desempenho.OTIMO);
 
-		reajusteService.processarReajuste(funcionario, Desempenho.OTIMO);
-
-		BigDecimal salarioAtual = funcionario.getSalario();
-		assertEquals(new BigDecimal("1200.00"), salarioAtual);
-	}
+        BigDecimal salarioAtual = funcionario.getSalario();
+        assertEquals(new BigDecimal("1200.00"), salarioAtual);
+    }
 }

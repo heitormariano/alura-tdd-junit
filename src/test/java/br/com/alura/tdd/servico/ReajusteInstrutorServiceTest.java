@@ -11,38 +11,38 @@ import org.junit.jupiter.api.Test;
 import br.com.alura.tdd.modelo.DesempenhoInstrutor;
 import br.com.alura.tdd.modelo.Funcionario;
 
-public class ReajusteServiceInstrutorTest {
+public class ReajusteInstrutorServiceTest {
 
-	private ReajusteServiceInstrutor reajusteService;
-	private Funcionario funcionario;
+    private ReajusteInstrutorService reajusteInstrutorService;
+    private Funcionario funcionario;
 
-	@BeforeEach
-	public void inicializar() {
-		reajusteService = new ReajusteServiceInstrutor();
-		funcionario = new Funcionario("Mark", LocalDate.now(), new BigDecimal("1000.00"));
-	}
+    @BeforeEach
+    public void inicializar() {
+        reajusteInstrutorService = new ReajusteInstrutorService();
+        funcionario = new Funcionario("Mark", LocalDate.now(), new BigDecimal("1000.00"));
+    }
 
-	@Test
-	public void reajusteSalarioParaDesempenhoADesejar() {
-		reajusteService.processarReajuste(funcionario, DesempenhoInstrutor.MEDIANO);
+    @Test
+    public void reajusteSalarioParaDesempenhoModerado() {
+        reajusteInstrutorService.processarReajuste(funcionario, DesempenhoInstrutor.MEDIANO);
 
-		BigDecimal salarioAtual = funcionario.getSalario();
-		assertEquals(new BigDecimal("1030.00"), salarioAtual);
-	}
+        BigDecimal salarioAtual = funcionario.getSalario();
+        assertEquals(new BigDecimal("1030.00"), salarioAtual);
+    }
 
-	@Test
-	public void reajusteSalarioParaDesempenhoBom() {
-		reajusteService.processarReajuste(funcionario, DesempenhoInstrutor.BOM);
+    @Test
+    public void reajusteSalarioParaDesempenhoBom() {
+        reajusteInstrutorService.processarReajuste(funcionario, DesempenhoInstrutor.BOM);
 
-		BigDecimal salarioAtual = funcionario.getSalario();
-		assertEquals(new BigDecimal("1150.00"), salarioAtual);
-	}
+        BigDecimal salarioAtual = funcionario.getSalario();
+        assertEquals(new BigDecimal("1150.00"), salarioAtual);
+    }
 
-	@Test
-	public void reajusteSalarioParaDesempenhoOtimo() {
-		reajusteService.processarReajuste(funcionario, DesempenhoInstrutor.OTIMO);
+    @Test
+    public void reajusteSalarioParaDesempenhoOtimo() {
+        reajusteInstrutorService.processarReajuste(funcionario, DesempenhoInstrutor.OTIMO);
 
-		BigDecimal salarioAtual = funcionario.getSalario();
-		assertEquals(new BigDecimal("1200.00"), salarioAtual);
-	}
+        BigDecimal salarioAtual = funcionario.getSalario();
+        assertEquals(new BigDecimal("1200.00"), salarioAtual);
+    }
 }
